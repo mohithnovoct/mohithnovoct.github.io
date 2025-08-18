@@ -4,9 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mohith Butta - Portfolio</title>
+    <meta name="description" content="Python Programmer & AI Enthusiast — Projects, blog, and contact.">
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="alternate" type="application/rss+xml" title="Mohith Butta — RSS" href="/feed.xml">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 </head>
 <body class="light-mode">
     <!-- Navigation -->
@@ -239,51 +242,9 @@
     <section id="blog" class="blog">
         <div class="container">
             <h2 class="section-title">Latest Blog Posts</h2>
-            <div class="blog-grid">
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span class="blog-date">December 2024</span>
-                            <span class="blog-category">Machine Learning</span>
-                        </div>
-                        <h3>Getting Started with TensorFlow</h3>
-                        <p>An introduction to TensorFlow for beginners, covering basic concepts and implementation.</p>
-                        <a href="#" class="read-more">Read More →</a>
-                    </div>
-                </article>
-
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-chart-bar"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span class="blog-date">November 2024</span>
-                            <span class="blog-category">Data Science</span>
-                        </div>
-                        <h3>Data Visualization with Plotly</h3>
-                        <p>Creating interactive visualizations using Plotly for better data insights and presentations.</p>
-                        <a href="#" class="read-more">Read More →</a>
-                    </div>
-                </article>
-
-                <article class="blog-card">
-                    <div class="blog-image">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <div class="blog-content">
-                        <div class="blog-meta">
-                            <span class="blog-date">October 2024</span>
-                            <span class="blog-category">Python</span>
-                        </div>
-                        <h3>Python Best Practices</h3>
-                        <p>Essential Python coding practices and patterns for writing clean, maintainable code.</p>
-                        <a href="#" class="read-more">Read More →</a>
-                    </div>
-                </article>
+            <div id="latest-posts" class="blog-grid"></div>
+            <div style="text-align:center;margin-top:1rem;">
+                <a href="/blog/" class="btn btn-primary">View All Posts</a>
             </div>
         </div>
     </section>

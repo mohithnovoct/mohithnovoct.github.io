@@ -4,6 +4,7 @@ const body = document.body;
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const contactForm = document.getElementById('contact-form');
+const latestPostsEl = document.getElementById('latest-posts');
 
 // Theme Management
 let currentTheme = localStorage.getItem('theme') || 'light';
@@ -45,21 +46,15 @@ function initSmoothScrolling() {
     
     navLinks.forEach(link => {
         link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href') || '';
+            if (!href.startsWith('#')) return; // Only intercept hash links
             e.preventDefault();
-            const targetId = link.getAttribute('href');
-            const targetSection = document.querySelector(targetId);
-            
-            if (targetSection) {
-                const offsetTop = targetSection.offsetTop - 80; // Account for fixed navbar
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu if open
-                if (navMenu.classList.contains('active')) {
-                    toggleMobileMenu();
-                }
+            const targetSection = document.querySelector(href);
+            if (!targetSection) return;
+            const offsetTop = targetSection.offsetTop - 80;
+            window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+            if (navMenu.classList.contains('active')) {
+                toggleMobileMenu();
             }
         });
     });
@@ -252,6 +247,33 @@ function initTypingEffect() {
     setTimeout(typeWriter, 500);
 }
 
+// Load latest posts on homepage
+function initLatestPosts() {
+    if (!latestPostsEl) return;
+    fetch('/assets/posts.json')
+        .then(r => r.json())
+        .then(posts => {
+            const latest = posts.slice(0, 3);
+            latestPostsEl.innerHTML = latest.map(p => `
+                <article class="blog-card">
+                    <div class="blog-image">${p.cover ? '<img src="'+p.cover+'" alt="'+p.title+'" style="width:100%;height:100%;object-fit:cover;">' : '<i class="fas fa-file-alt"></i>'}</div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span class="blog-date">${p.prettyDate}</span>
+                            ${p.category ? '<span class="blog-category">'+p.category+'</span>' : ''}
+                        </div>
+                        <h3>${p.title}</h3>
+                        <p>${p.description}</p>
+                        <a href="${p.url}" class="read-more">Read More →</a>
+                    </div>
+                </article>
+            `).join('');
+        })
+        .catch(() => {
+            latestPostsEl.innerHTML = '<p>Posts will appear here soon.</p>';
+        });
+}
+
 // Initialize all functionality
 document.addEventListener('DOMContentLoaded', () => {
     // Initialize theme
@@ -267,6 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initAnimations();
     initNavbarScroll();
     initTypingEffect();
+    initLatestPosts();
     
     // Add loading animation
     document.body.style.opacity = '0';
