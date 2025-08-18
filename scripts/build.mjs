@@ -18,9 +18,9 @@ const POSTS_JSON = path.join(ASSETS_DIR, 'posts.json');
 // Giscus (comments) - ensure your repo is configured with Giscus
 const GISCUS = {
 	repo: 'mohithnovoct/mohithnovoct.github.io',
-	repoId: '', // optional: fill to avoid runtime network lookup
+	repoId: 'R_kgDOPTLzKQ',
 	category: 'General',
-	categoryId: '', // optional
+	categoryId: 'DIC_kwDOPTLzKc4B-_0y',
 	mapping: 'pathname',
 	reactionsEnabled: '1',
 	emitMetadata: '0',
