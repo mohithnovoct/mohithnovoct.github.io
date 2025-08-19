@@ -1,8 +1,9 @@
 ---
+layout: post
 title: Data Visualization with Plotly
-date: 2024-11-15
+date: 2025-08-19
 tags: [data-science, visualization, plotly]
-category: Data Science
+categories: blog
 description: Creating interactive charts with Plotly for better insights and presentations.
 cover: 
 ---

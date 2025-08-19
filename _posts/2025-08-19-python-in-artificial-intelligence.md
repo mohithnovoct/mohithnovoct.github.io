@@ -1,8 +1,9 @@
 ---
+layout: post
 title: Why Python Dominates Artificial Intelligence — Practical Use‑Cases and Impact
-date: 2025-08-18
+date: 2025-08-19
 tags: [python, artificial-intelligence, machine-learning, deep-learning, tooling]
-category: AI & ML
+categories: blog
 description: A concise overview of how Python became the lingua franca of AI—covering data science workflows, ML frameworks, productionization, and the ecosystem that accelerated breakthroughs.
 cover: 
 ---

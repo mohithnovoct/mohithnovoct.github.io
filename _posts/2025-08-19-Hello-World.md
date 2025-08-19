@@ -1,8 +1,9 @@
 ---
+layout: post
 title: Hello World
-date: 2025-01-01
+date: 2025-08-19
 tags: [intro, personal]
-category: Meta
+categories: blog
 description: Kicking off the blog with a short hello and what to expect next.
 cover: 
 ---

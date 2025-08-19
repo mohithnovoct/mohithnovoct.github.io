@@ -1,8 +1,9 @@
 ---
+layout: post
 title: Getting Started with TensorFlow
-date: 2024-12-01
+date: 2025-08-19
 tags: [machine-learning, tensorflow]
-category: Machine Learning
+categories: blog
 description: A gentle introduction to TensorFlow covering tensors, graphs, and model building.
 cover: 
 ---
