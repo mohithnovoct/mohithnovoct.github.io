@@ -10,7 +10,7 @@ const __dirname = path.resolve();
 const SITE_URL = process.env.SITE_URL || 'https://mohithnovoct.github.io';
 const SITE_TITLE = 'Mohith Butta';
 const SITE_DESC = 'Python Programmer & AI Enthusiast';
-const POSTS_DIR = path.join(__dirname, 'posts');
+const POSTS_DIRS = [path.join(__dirname, '_posts'), path.join(__dirname, 'posts')];
 const OUTPUT_DIR = path.join(__dirname, 'blog');
 const ASSETS_DIR = path.join(__dirname, 'assets');
 const POSTS_JSON = path.join(ASSETS_DIR, 'posts.json');
@@ -216,18 +216,29 @@ function escapeHtml(str = '') {
 
 // ---------- Build Steps ----------
 async function readPosts() {
-	await ensureDir(POSTS_DIR);
-	const files = globSync('*.md', { cwd: POSTS_DIR, nodir: true });
+	// Gather markdown files from both `_posts` and `posts`
+	const found = [];
+	for (const dir of POSTS_DIRS) {
+		try {
+			const files = globSync('*.md', { cwd: dir, nodir: true });
+			for (const f of files) found.push({ dir, file: f });
+		} catch {}
+	}
+
 	const posts = [];
-	for (const file of files) {
-		const fullPath = path.join(POSTS_DIR, file);
+	for (const { dir, file } of found) {
+		const fullPath = path.join(dir, file);
 		const raw = await fs.readFile(fullPath, 'utf8');
 		const { content, data } = matter(raw);
 		if (data.draft) continue;
-		const title = data.title || path.parse(file).name;
-		const slug = data.slug ? slugify(data.slug) : slugify(path.parse(file).name);
+		const base = path.parse(file).name;
+		// Support Jekyll-style file names: YYYY-MM-DD-title.md
+		const m = base.match(/^(\d{4}-\d{2}-\d{2})-(.+)$/);
+		const title = data.title || (m ? m[2].replace(/[-_]/g, ' ') : base);
+		const slug = data.slug ? slugify(data.slug) : slugify(m ? m[2] : base);
 		const stat = await fs.stat(fullPath);
-		const dateISO = formatDateISO(data.date || stat.mtime.toISOString());
+		const dateFromName = m ? m[1] : null;
+		const dateISO = formatDateISO(data.date || dateFromName || stat.mtime.toISOString());
 		const datePretty = formatDatePretty(dateISO);
 		const html = marked.parse(content);
 		const description = data.description || toExcerpt(html);
@@ -246,7 +257,7 @@ async function readPosts() {
 		};
 		posts.push(post);
 	}
-	// newest first
+	// Newest first
 	posts.sort((a, b) => new Date(b.dateISO) - new Date(a.dateISO));
 	return posts;
 }
