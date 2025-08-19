@@ -116,7 +116,7 @@
     });
   }
 
-  fetch('/assets/posts.json')
+  fetch('/assets/posts.json', { cache: 'no-store' })
     .then(r=>r.json())
     .then(posts => {
       allPosts = posts;

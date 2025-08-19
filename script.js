@@ -250,7 +250,7 @@ function initTypingEffect() {
 // Load latest posts on homepage
 function initLatestPosts() {
     if (!latestPostsEl) return;
-    fetch('/assets/posts.json')
+    fetch('/assets/posts.json', { cache: 'no-store' })
         .then(r => r.json())
         .then(posts => {
             const latest = posts.slice(0, 3);
