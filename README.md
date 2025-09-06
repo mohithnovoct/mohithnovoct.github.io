@@ -1,150 +1,165 @@
 # Mohith Butta - Portfolio Website
 
-A modern, responsive portfolio website showcasing my skills, projects, and experience as a Python programmer and AI enthusiast.
+A modern, 3D-inspired portfolio website built with FastHTML, featuring a sleek design with glass morphism effects, dark/light theme toggle, and responsive layout.
 
-## 🌟 Features
+## 🚀 Features
 
-- **Dark Mode Toggle**: Seamless theme switching with persistent preferences
-- **Project Section**: Showcase of featured projects with GitHub links
-- **Resume Download**: Direct download functionality for resume
-- **Blog Integration**: Blog section for sharing insights and articles
-- **Responsive Design**: Mobile-first approach with modern UI/UX
-- **Smooth Animations**: Engaging animations and transitions
-- **Contact Form**: Interactive contact form with validation
-- **Modern UI**: Clean, professional design with gradient accents
+- **Modern 3D Design**: Glass morphism effects, 3D transformations, and animated gradients
+- **Dark/Light Theme**: Toggle between black/grey dark mode and light mode
+- **Responsive Layout**: Works perfectly on all devices
+- **FastHTML Framework**: Python-based web framework with HTMX integration
+- **Blog System**: Dynamic blog posts with markdown support
+- **GitHub Pages Ready**: Automatic deployment with GitHub Actions
 
-## 🚀 Technologies Used
+## 🎨 Design Highlights
 
-- **HTML5**: Semantic markup structure
-- **CSS3**: Modern styling with CSS Grid and Flexbox
-- **JavaScript**: Interactive functionality and animations
-- **Font Awesome**: Icons and visual elements
-- **Google Fonts**: Inter font family for typography
+- **Glass Morphism**: Transparent cards with backdrop blur effects
+- **3D Transformations**: Perspective and rotation effects on interactive elements
+- **Neon Color Palette**: Bright green (#00ff88) and cyan (#00d4ff) accents
+- **Animated Backgrounds**: Subtle floating gradient orbs
+- **Glowing Effects**: Text and element shadows with neon colors
 
 ## 📁 Project Structure
 
 ```
-portfolio-website/
-├── index.html          # Main HTML file
-├── styles.css          # CSS styles and theme variables
-├── script.js           # JavaScript functionality
-├── resume.pdf          # Resume file for download
-└── README.md           # Project documentation
+├── app.py                 # Main FastHTML application
+├── build_static.py        # Static site generator for GitHub Pages
+├── requirements.txt       # Python dependencies
+├── _posts/               # Blog post markdown files
+├── assets/               # Static assets and data
+├── .github/workflows/    # GitHub Actions for deployment
+└── README.md            # This file
 ```
 
-## 🎨 Design Features
-
-### Color Scheme
-- **Light Mode**: Clean whites and grays with purple accents
-- **Dark Mode**: Deep blues and grays with enhanced contrast
-- **Gradients**: Purple gradient accents throughout the design
-
-### Typography
-- **Primary Font**: Inter (Google Fonts)
-- **Font Weights**: 300, 400, 500, 600, 700
-- **Responsive**: Scales appropriately on all devices
-
-### Components
-- **Navigation**: Fixed navbar with smooth scrolling
-- **Hero Section**: Animated typing effect and call-to-action buttons
-- **Project Cards**: Hover effects and GitHub integration
-- **Blog Cards**: Clean layout with category tags
-- **Contact Form**: Validation and notification system
-
-## 🛠️ Setup Instructions
+## 🛠️ Development
 
 ### Local Development
 
-1. **Clone or Download**: Get the project files
-2. **Open in Browser**: Simply open `index.html` in your web browser
-3. **No Build Process**: Pure HTML, CSS, and JavaScript - no compilation needed
+1. **Install dependencies:**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-### GitHub Pages Deployment
+2. **Run the FastHTML application:**
+   ```bash
+   python app.py
+   ```
 
-1. **Create Repository**: Create a new GitHub repository
-2. **Upload Files**: Upload all project files to the repository
-3. **Enable GitHub Pages**:
-   - Go to repository Settings
-   - Scroll to "GitHub Pages" section
-   - Select "Deploy from a branch"
-   - Choose "main" branch and "/ (root)" folder
-   - Click "Save"
+3. **Access your website:**
+   Open `http://localhost:5001` in your browser
 
-4. **Access Your Site**: Your portfolio will be available at `https://yourusername.github.io/repository-name`
+### Static Site Generation
 
-## 📱 Responsive Design
+For GitHub Pages deployment:
 
-The website is fully responsive and optimized for:
-- **Desktop**: 1200px+ (Full layout with side-by-side sections)
-- **Tablet**: 768px - 1199px (Adjusted grid layouts)
-- **Mobile**: < 768px (Single column layout with mobile menu)
+```bash
+python build_static.py
+```
 
-## 🎯 Key Sections
+This generates static HTML files in the `_site/` directory.
 
-### Home/Hero
-- Animated typing effect
-- Social media links
-- Call-to-action buttons
-- Download resume functionality
+## 🚀 Deployment
 
-### About
-- Personal introduction
-- Skills organized by category
-- Tech stack visualization
+### GitHub Pages (Automatic)
 
-### Projects
-- Featured projects from GitHub
-- Technology tags
-- Direct links to repositories
-- Hover animations
+The repository is configured with GitHub Actions for automatic deployment:
 
-### Blog
-- Sample blog posts
-- Category system
-- Read more links
-- Clean card layout
+1. Push changes to the `main` branch
+2. GitHub Actions will automatically:
+   - Generate static HTML files
+   - Deploy to GitHub Pages
+   - Update your live website
 
-### Contact
-- Contact form with validation
-- Social media links
-- Professional contact information
+### Manual Deployment
+
+1. Generate static files:
+   ```bash
+   python build_static.py
+   ```
+
+2. Deploy the `_site/` directory to your hosting provider
+
+## 📝 Blog Posts
+
+Blog posts are written in Markdown format in the `_posts/` directory. Each post includes:
+
+- Frontmatter with metadata (title, date, tags, description)
+- Markdown content with code syntax highlighting
+- Automatic HTML generation
+
+### Adding New Blog Posts
+
+1. Create a new markdown file in `_posts/` with the format: `YYYY-MM-DD-slug.md`
+2. Add frontmatter with post metadata
+3. Write your content in Markdown
+4. The post will automatically appear on the website
+
+## 🎯 Key Technologies
+
+- **FastHTML**: Python web framework with FastTags
+- **HTMX**: Modern web interactions without complex JavaScript
+- **Pico CSS**: Minimal CSS framework for modern styling
+- **GitHub Actions**: Automated deployment pipeline
+- **Markdown**: Blog post content format
 
 ## 🔧 Customization
 
-### Colors
-Edit CSS variables in `styles.css`:
-```css
-:root {
-    --primary-color: #6366f1;
-    --secondary-color: #8b5cf6;
-    /* ... other variables */
+### Adding New Projects
+
+Edit the `PROJECTS` list in `app.py`:
+
+```python
+PROJECTS = [
+    {
+        'title': 'Your Project',
+        'description': 'Project description',
+        'icon': 'fas fa-icon-name',
+        'tech': ['Python', 'FastHTML', 'HTMX'],
+        'github': 'https://github.com/yourusername/project'
+    },
+    # ... more projects
+]
+```
+
+### Adding New Skills
+
+Edit the `SKILLS` dictionary in `app.py`:
+
+```python
+SKILLS = {
+    'New Category': ['Skill 1', 'Skill 2', 'Skill 3'],
+    # ... existing categories
 }
 ```
 
-### Content
-- Update personal information in `index.html`
-- Replace project links with your own
-- Add your actual resume to `resume.pdf`
-- Customize blog posts and contact information
+### Styling Customization
 
-### Features
-- Modify animations in `script.js`
-- Add new sections as needed
-- Customize form handling
-- Extend theme functionality
+The CSS is embedded in the `CUSTOM_CSS` variable in `app.py`. You can modify:
+- Colors and themes
+- Layout and spacing
+- Animations and effects
+- Responsive breakpoints
 
-## 🌐 Browser Support
+## 📱 Responsive Design
 
-- **Chrome**: 90+
-- **Firefox**: 88+
-- **Safari**: 14+
-- **Edge**: 90+
+The website is fully responsive with:
+- Mobile-first approach
+- Flexible grid layouts
+- Touch-friendly navigation
+- Optimized for all screen sizes
 
-## 📞 Contact
+## 🌙 Theme System
 
-- **GitHub**: [github.com/mohithnovoct](https://github.com/mohithnovoct)
-- **LinkedIn**: [linkedin.com/in/mohith-butta](https://www.linkedin.com/in/mohith-butta-472543285)
-- **Email**: mohithbutta4002@gmail.com
+- **Light Mode**: Clean white background with dark text
+- **Dark Mode**: Pure black background with neon accents
+- **Persistent Storage**: Theme preference saved in localStorage
+- **Smooth Transitions**: Animated theme switching
+
+## 🔗 Links
+
+- **Live Website**: [mohithnovoct.github.io](https://mohithnovoct.github.io)
+- **GitHub Repository**: [mohithnovoct/mohithnovoct.github.io](https://github.com/mohithnovoct/mohithnovoct.github.io)
+- **FastHTML Documentation**: [fastht.ml](https://www.fastht.ml/)
 
 ## 📄 License
 
@@ -152,4 +167,4 @@ This project is open source and available under the [MIT License](LICENSE).
 
 ---
 
-**Built by Mohith Butta** 
+Built with ❤️ using FastHTML and modern web technologies.
