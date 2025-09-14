@@ -159,37 +159,26 @@ This message was sent from your portfolio website.
         print(f"Error sending email: {e}")
         return False
 
-# Custom CSS for modern 3D-inspired styling
+# Custom CSS for minimalist black design
 CUSTOM_CSS = """
 :root {
-    --primary-color: #00ff88;
-    --secondary-color: #00d4ff;
-    --accent-color: #ff6b6b;
+    --primary-color: #ffffff;
+    --secondary-color: #cccccc;
+    --accent-color: #888888;
     --success-color: #00ff88;
     --warning-color: #ffd93d;
     --error-color: #ff4757;
-    --background: #ffffff;
-    --surface: #f8fafc;
-    --text-primary: #1a1a1a;
-    --text-secondary: #666666;
-    --border: transparent;
-    --shadow: rgba(0, 0, 0, 0.05);
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
-}
-
-[data-theme="dark"] {
-    --primary-color: #00ff88;
-    --secondary-color: #00d4ff;
-    --accent-color: #ff6b6b;
     --background: #000000;
     --surface: #111111;
+    --surface-light: #1a1a1a;
     --text-primary: #ffffff;
     --text-secondary: #cccccc;
-    --border: transparent;
-    --shadow: rgba(0, 0, 0, 0.5);
-    --glass-bg: rgba(255, 255, 255, 0.05);
+    --text-muted: #888888;
+    --border: #333333;
+    --shadow: rgba(0, 0, 0, 0.8);
+    --glass-bg: rgba(255, 255, 255, 0.03);
     --glass-border: rgba(255, 255, 255, 0.1);
+    --hover-bg: rgba(255, 255, 255, 0.05);
 }
 
 * {
@@ -208,12 +197,12 @@ body {
 }
 
 .container {
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
 }
 
-/* 3D Background Effects */
+/* Minimalist background with subtle grid */
 body::before {
     content: '';
     position: fixed;
@@ -221,35 +210,25 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: 
-        radial-gradient(circle at 20% 80%, var(--primary-color) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, var(--secondary-color) 0%, transparent 50%),
-        radial-gradient(circle at 40% 40%, var(--accent-color) 0%, transparent 50%);
-    opacity: 0.1;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 50px 50px;
     z-index: -1;
-    animation: float 20s ease-in-out infinite;
+    pointer-events: none;
 }
 
-[data-theme="dark"] body::before {
-    opacity: 0.05;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(0deg); }
-    50% { transform: translateY(-20px) rotate(180deg); }
-}
-
-/* Navigation - Glass Morphism */
+/* Navigation - Minimalist Black Design */
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
-    background: var(--glass-bg);
+    background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     z-index: 1000;
-    padding: 1.5rem 0;
-    border-bottom: 1px solid var(--glass-border);
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
     transition: all 0.3s ease;
 }
 
@@ -257,7 +236,7 @@ body::before {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
     gap: 2rem;
@@ -265,16 +244,16 @@ body::before {
 
 .nav-logo h2 {
     color: var(--primary-color);
-    font-weight: 800;
+    font-weight: 700;
     margin: 0;
-    font-size: 1.5rem;
-    text-shadow: 0 0 20px var(--primary-color);
+    font-size: 1.3rem;
+    letter-spacing: -0.5px;
 }
 
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 1.5rem;
+    gap: 0;
     margin: 0;
     padding: 0;
     align-items: center;
@@ -282,99 +261,61 @@ body::before {
 
 .nav-link {
     text-decoration: none;
-    color: var(--text-primary);
-    font-weight: 600;
+    color: var(--text-secondary);
+    font-weight: 400;
     transition: all 0.3s ease;
-    padding: 0.8rem 1.5rem;
-    border-radius: 12px;
+    padding: 0.5rem 1.5rem;
     position: relative;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    overflow: hidden;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
-.nav-link::before {
+.nav-link::after {
     content: '';
     position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.2), transparent);
-    transition: left 0.5s;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 1px;
+    background: var(--primary-color);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
 }
 
-.nav-link:hover::before {
-    left: 100%;
+.nav-link:hover::after {
+    width: 80%;
 }
 
 .nav-link:hover {
-    background: rgba(0, 255, 136, 0.1);
-    border-color: var(--primary-color);
     color: var(--primary-color);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 35px rgba(0, 255, 136, 0.25);
 }
 
 .nav-link.active {
-    background: rgba(0, 255, 136, 0.15);
-    border-color: var(--primary-color);
     color: var(--primary-color);
-    box-shadow: 0 8px 25px rgba(0, 255, 136, 0.2);
 }
 
-.theme-toggle {
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    color: var(--text-primary);
-    font-size: 1.2rem;
-    cursor: pointer;
-    padding: 0.8rem;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
-    margin-left: 1rem;
+.nav-link.active::after {
+    width: 80%;
 }
 
-.theme-toggle:hover {
-    background: var(--primary-color);
-    color: var(--background);
-    transform: scale(1.1);
-    box-shadow: 0 0 30px var(--primary-color);
-}
 
-/* Hero Section - 3D Design */
+
+/* Hero Section - Minimalist Black Design */
 .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    padding: 150px 0 100px;
+    padding: 120px 0 80px;
     position: relative;
-    overflow: hidden;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 30% 20%, var(--primary-color) 0%, transparent 40%),
-        radial-gradient(circle at 70% 80%, var(--secondary-color) 0%, transparent 40%);
-    opacity: 0.1;
-    z-index: -1;
 }
 
 .hero-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 6rem;
+    gap: 4rem;
     align-items: center;
-    max-width: 1400px;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
     position: relative;
@@ -386,193 +327,113 @@ body::before {
 }
 
 .hero-title {
-    font-size: 4.5rem;
-    font-weight: 900;
-    margin-bottom: 1.5rem;
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    font-size: 3.5rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    letter-spacing: -1px;
+    color: var(--text-primary);
 }
 
 .highlight {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--primary-color);
+    font-weight: 700;
     position: relative;
     display: inline-block;
 }
 
-.highlight::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    border-radius: 2px;
-    animation: glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-    from { box-shadow: 0 0 5px var(--primary-color); }
-    to { box-shadow: 0 0 20px var(--primary-color), 0 0 30px var(--primary-color); }
-}
-
 .hero-subtitle {
-    font-size: 1.8rem;
-    color: var(--text-secondary);
+    font-size: 1.4rem;
+    color: var(--text-muted);
     margin-bottom: 1.5rem;
-    font-weight: 600;
+    font-weight: 300;
+    letter-spacing: 1px;
 }
 
 .hero-description {
-    font-size: 1.2rem;
+    font-size: 1rem;
     color: var(--text-secondary);
     margin-bottom: 3rem;
-    max-width: 600px;
-    line-height: 1.7;
+    max-width: 500px;
+    line-height: 1.6;
+    font-weight: 300;
 }
 
 .hero-buttons {
     display: flex;
-    gap: 2rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
 }
 
 .btn {
-    padding: 1rem 2.5rem;
-    border-radius: 50px;
+    padding: 0.8rem 2rem;
+    border-radius: 2px;
     text-decoration: none;
-    font-weight: 700;
-    transition: all 0.4s ease;
+    font-weight: 400;
+    transition: all 0.3s ease;
     display: inline-flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.5rem;
     border: none;
     cursor: pointer;
-    font-size: 1.1rem;
+    font-size: 0.9rem;
     position: relative;
-    overflow: hidden;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
-
-.btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-    transition: left 0.5s;
-}
-
-.btn:hover::before {
-    left: 100%;
+    letter-spacing: 1px;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background: var(--primary-color);
     color: var(--background);
-    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+    border: 1px solid var(--primary-color);
 }
 
 .btn-primary:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 20px 50px rgba(0, 255, 136, 0.5);
+    background: transparent;
+    color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .btn-secondary {
-    background: var(--glass-bg);
-    color: var(--text-primary);
-    border: 2px solid var(--glass-border);
-    backdrop-filter: blur(10px);
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
 }
 
 .btn-secondary:hover {
-    background: var(--primary-color);
-    color: var(--background);
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 20px 50px rgba(0, 255, 136, 0.3);
+    background: var(--hover-bg);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
-/* Profile Card - 3D Glass Effect */
+/* Profile Card - Minimalist Black Design */
 .profile-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    padding: 3rem;
-    border-radius: 30px;
-    box-shadow: 
-        0 25px 50px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    background: var(--surface);
+    padding: 2rem;
+    border-radius: 4px;
+    border: 1px solid var(--border);
     text-align: center;
-    border: 1px solid var(--glass-border);
     position: relative;
-    overflow: hidden;
-    transform: perspective(1000px) rotateY(-5deg) rotateX(5deg);
-    transition: all 0.4s ease;
-}
-
-.profile-card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, var(--primary-color), transparent);
-    opacity: 0.1;
-    animation: rotate 10s linear infinite;
-    z-index: -1;
-}
-
-@keyframes rotate {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    transition: all 0.3s ease;
 }
 
 .profile-card:hover {
-    transform: perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.05);
-    box-shadow: 
-        0 35px 70px rgba(0, 0, 0, 0.2),
-        0 0 50px rgba(0, 255, 136, 0.3);
+    border-color: var(--primary-color);
 }
 
 .profile-avatar {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
     margin: 0 auto 2rem;
     overflow: hidden;
-    border: 4px solid var(--primary-color);
-    box-shadow: 
-        0 0 30px var(--primary-color),
-        0 20px 40px rgba(0, 0, 0, 0.2);
+    border: 2px solid var(--border);
     position: relative;
-    transition: all 0.4s ease;
-}
-
-.profile-avatar::before {
-    content: '';
-    position: absolute;
-    top: -4px;
-    left: -4px;
-    right: -4px;
-    bottom: -4px;
-    border-radius: 50%;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color), var(--accent-color));
-    z-index: -1;
-    animation: rotate 3s linear infinite;
+    transition: all 0.3s ease;
 }
 
 .profile-avatar:hover {
-    transform: scale(1.1);
-    box-shadow: 
-        0 0 50px var(--primary-color),
-        0 30px 60px rgba(0, 0, 0, 0.3);
+    border-color: var(--primary-color);
 }
 
 .profile-image {
@@ -584,96 +445,56 @@ body::before {
 
 .social-links {
     display: flex;
-    gap: 1.5rem;
+    gap: 1rem;
     justify-content: center;
 }
 
 .social-links a {
-    width: 60px;
-    height: 60px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border-radius: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--text-primary);
+    color: var(--text-secondary);
     text-decoration: none;
-    transition: all 0.4s ease;
-    border: 1px solid var(--glass-border);
-    position: relative;
-    overflow: hidden;
-}
-
-.social-links a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 50%;
-}
-
-.social-links a:hover::before {
-    opacity: 1;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border);
+    font-size: 0.9rem;
 }
 
 .social-links a:hover {
-    color: var(--background);
-    transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 15px 30px rgba(0, 255, 136, 0.4);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    background: var(--hover-bg);
 }
 
-.social-links a i {
-    position: relative;
-    z-index: 1;
-}
-
-/* Sections - 3D Design */
+/* Sections - Minimalist Black Design */
 .section {
-    padding: 120px 0;
+    padding: 80px 0;
     position: relative;
-}
-
-.section::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: 
-        radial-gradient(circle at 10% 20%, var(--primary-color) 0%, transparent 30%),
-        radial-gradient(circle at 90% 80%, var(--secondary-color) 0%, transparent 30%);
-    opacity: 0.03;
-    z-index: -1;
 }
 
 .section-title {
-    font-size: 3.5rem;
-    font-weight: 900;
+    font-size: 2.5rem;
+    font-weight: 300;
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
     color: var(--text-primary);
     position: relative;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.5px;
 }
 
 .section-title::after {
     content: '';
     position: absolute;
-    bottom: -10px;
+    bottom: -15px;
     left: 50%;
     transform: translateX(-50%);
-    width: 100px;
-    height: 4px;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    border-radius: 2px;
-    animation: glow 2s ease-in-out infinite alternate;
+    width: 60px;
+    height: 1px;
+    background: var(--primary-color);
 }
 
 /* About Section */
@@ -726,150 +547,108 @@ body::before {
     border: 1px solid var(--border);
 }
 
-/* Projects Section - 3D Cards */
+/* Projects Section - Minimalist Black Cards */
 .projects {
     background: var(--surface);
 }
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-    gap: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
 }
 
 .project-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 25px;
-    padding: 3rem;
-    box-shadow: 
-        0 20px 40px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 rgba(255, 255, 255, 0.2);
-    border: 1px solid var(--glass-border);
-    transition: all 0.4s ease;
+    background: var(--background);
+    border-radius: 4px;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
     position: relative;
-    overflow: hidden;
-    transform: perspective(1000px) rotateX(5deg);
-}
-
-.project-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: -1;
 }
 
 .project-card:hover {
-    transform: perspective(1000px) rotateX(0deg) translateY(-10px) scale(1.02);
-    box-shadow: 
-        0 30px 60px rgba(0, 0, 0, 0.2),
-        0 0 50px rgba(0, 255, 136, 0.3);
-}
-
-.project-card:hover::before {
-    opacity: 0.05;
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
 }
 
 .project-icon {
-    width: 80px;
-    height: 80px;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-    border-radius: 20px;
+    width: 50px;
+    height: 50px;
+    background: var(--surface);
+    border-radius: 2px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
-    color: var(--background);
-    margin-bottom: 2rem;
-    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
-    position: relative;
-    overflow: hidden;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
 }
 
-.project-icon::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-    animation: shine 3s ease-in-out infinite;
-}
-
-@keyframes shine {
-    0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-    50% { transform: translateX(100%) translateY(100%) rotate(45deg); }
-    100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+.project-card:hover .project-icon {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
 }
 
 .project-content h3 {
-    font-size: 1.6rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
     color: var(--text-primary);
-    font-weight: 800;
+    font-weight: 400;
+    letter-spacing: -0.5px;
 }
 
 .project-content p {
     color: var(--text-secondary);
-    margin-bottom: 2rem;
-    line-height: 1.7;
-    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+    font-size: 0.95rem;
 }
 
 .project-tech {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.8rem;
-    margin-bottom: 2rem;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .tech-tag {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    color: var(--text-primary);
-    padding: 0.5rem 1.2rem;
-    border-radius: 25px;
-    font-size: 0.9rem;
-    border: 1px solid var(--glass-border);
+    background: var(--surface);
+    color: var(--text-secondary);
+    padding: 0.3rem 0.8rem;
+    border-radius: 2px;
+    font-size: 0.8rem;
+    border: 1px solid var(--border);
     transition: all 0.3s ease;
 }
 
 .tech-tag:hover {
-    background: var(--primary-color);
-    color: var(--background);
-    transform: translateY(-2px);
+    background: var(--hover-bg);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
 }
 
 .project-link {
-    color: var(--primary-color);
+    color: var(--text-secondary);
     text-decoration: none;
-    font-weight: 700;
+    font-weight: 400;
     display: inline-flex;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.5rem;
     transition: all 0.3s ease;
-    padding: 1rem 2rem;
-    border-radius: 50px;
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--border);
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    font-size: 0.8rem;
 }
 
 .project-link:hover {
-    background: var(--primary-color);
-    color: var(--background);
-    transform: translateY(-3px);
-    box-shadow: 0 15px 30px rgba(0, 255, 136, 0.4);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    background: var(--hover-bg);
 }
 
 /* Blog Section */
@@ -881,26 +660,26 @@ body::before {
 
 .blog-card {
     background: var(--background);
-    border-radius: 16px;
+    border-radius: 4px;
     overflow: hidden;
-    box-shadow: 0 10px 30px var(--shadow);
     border: 1px solid var(--border);
     transition: all 0.3s ease;
 }
 
 .blog-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 40px var(--shadow);
+    border-color: var(--primary-color);
+    transform: translateY(-2px);
 }
 
 .blog-image {
-    height: 200px;
-    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    height: 150px;
+    background: var(--surface);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 3rem;
-    color: white;
+    font-size: 2rem;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border);
 }
 
 .blog-content {
@@ -914,36 +693,41 @@ body::before {
 }
 
 .blog-date, .blog-category {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
+    font-size: 0.8rem;
+    color: var(--text-muted);
 }
 
 .blog-category {
     color: var(--primary-color);
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .blog-content h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     margin-bottom: 1rem;
     color: var(--text-primary);
+    font-weight: 400;
 }
 
 .blog-content p {
     color: var(--text-secondary);
     margin-bottom: 1rem;
     line-height: 1.6;
+    font-size: 0.9rem;
 }
 
 .read-more {
-    color: var(--primary-color);
+    color: var(--text-secondary);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: 400;
     transition: color 0.3s ease;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .read-more:hover {
-    color: var(--secondary-color);
+    color: var(--primary-color);
 }
 
 /* Contact Section */
@@ -954,21 +738,23 @@ body::before {
 .contact-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: 3rem;
     max-width: 1000px;
     margin: 0 auto;
 }
 
 .contact-info h3 {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin-bottom: 1rem;
     color: var(--text-primary);
+    font-weight: 400;
 }
 
 .contact-info p {
     color: var(--text-secondary);
     margin-bottom: 2rem;
     line-height: 1.6;
+    font-size: 0.95rem;
 }
 
 .contact-links {
@@ -981,26 +767,26 @@ body::before {
     display: flex;
     align-items: center;
     gap: 1rem;
-    color: var(--text-primary);
+    color: var(--text-secondary);
     text-decoration: none;
     padding: 1rem;
-    border-radius: 8px;
+    border-radius: 2px;
     background: var(--background);
     border: 1px solid var(--border);
     transition: all 0.3s ease;
+    font-size: 0.9rem;
 }
 
 .contact-link:hover {
-    background: var(--primary-color);
-    color: white;
-    transform: translateX(5px);
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+    background: var(--hover-bg);
 }
 
 .contact-form {
     background: var(--background);
     padding: 2rem;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px var(--shadow);
+    border-radius: 4px;
     border: 1px solid var(--border);
 }
 
@@ -1011,13 +797,14 @@ body::before {
 .form-group input,
 .form-group textarea {
     width: 100%;
-    padding: 1rem;
+    padding: 0.8rem;
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: 2px;
     background: var(--background);
     color: var(--text-primary);
     font-family: inherit;
     transition: border-color 0.3s ease;
+    font-size: 0.9rem;
 }
 
 .form-group input:focus,
@@ -1042,8 +829,9 @@ body::before {
 }
 
 .footer-content p {
-    color: var(--text-secondary);
+    color: var(--text-muted);
     margin: 0;
+    font-size: 0.9rem;
 }
 
 .footer-links {
@@ -1052,9 +840,10 @@ body::before {
 }
 
 .footer-links a {
-    color: var(--text-secondary);
+    color: var(--text-muted);
     text-decoration: none;
     transition: color 0.3s ease;
+    font-size: 0.9rem;
 }
 
 .footer-links a:hover {
@@ -1070,11 +859,11 @@ body::before {
     .hero-container {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 3rem;
+        gap: 2rem;
     }
     
     .hero-title {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
     
     .hero-buttons {
@@ -1083,7 +872,7 @@ body::before {
     
     .contact-content {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 2rem;
     }
     
     .projects-grid {
@@ -1102,14 +891,6 @@ body::before {
         flex-direction: column;
         text-align: center;
     }
-    
-    .profile-card {
-        transform: perspective(1000px) rotateY(0deg) rotateX(0deg);
-    }
-    
-    .project-card {
-        transform: perspective(1000px) rotateX(0deg);
-    }
 }
 
 @media (max-width: 480px) {
@@ -1118,25 +899,25 @@ body::before {
     }
     
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
     
     .section-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
     
     .btn {
-        padding: 0.8rem 1.5rem;
-        font-size: 1rem;
+        padding: 0.7rem 1.5rem;
+        font-size: 0.8rem;
     }
     
     .projects-grid {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1.5rem;
     }
     
     .project-card {
-        padding: 2rem;
+        padding: 1.5rem;
     }
 }
 
@@ -1149,7 +930,7 @@ html {
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(20px);
     }
     to {
         opacity: 1;
@@ -1159,7 +940,7 @@ html {
 
 .project-card,
 .blog-card {
-    animation: fadeInUp 0.6s ease-out;
+    animation: fadeInUp 0.4s ease-out;
 }
 
 /* Theme Transition */
@@ -1194,12 +975,6 @@ def index():
                     Li(A("Blog", href="#blog", cls="nav-link")),
                     Li(A("Contact", href="#contact", cls="nav-link")),
                     cls="nav-menu"
-                ),
-                Button(
-                    I(cls="fas fa-moon"),
-                    cls="theme-toggle",
-                    id="theme-toggle",
-                    onclick="toggleTheme()"
                 ),
                 cls="nav-container"
             ),
@@ -1437,33 +1212,8 @@ def index():
             cls="footer"
         ),
         
-        # JavaScript for theme toggle and interactions
+        # JavaScript for interactions
         Script("""
-            // Theme Management
-            let currentTheme = localStorage.getItem('theme') || 'light';
-            
-            function initTheme() {
-                if (currentTheme === 'dark') {
-                    document.body.setAttribute('data-theme', 'dark');
-                    document.getElementById('theme-toggle').innerHTML = '<i class="fas fa-sun"></i>';
-                } else {
-                    document.body.setAttribute('data-theme', 'light');
-                    document.getElementById('theme-toggle').innerHTML = '<i class="fas fa-moon"></i>';
-                }
-            }
-            
-            function toggleTheme() {
-                if (currentTheme === 'light') {
-                    currentTheme = 'dark';
-                    document.body.setAttribute('data-theme', 'dark');
-                    document.getElementById('theme-toggle').innerHTML = '<i class="fas fa-sun"></i>';
-                } else {
-                    currentTheme = 'light';
-                    document.body.setAttribute('data-theme', 'light');
-                    document.getElementById('theme-toggle').innerHTML = '<i class="fas fa-moon"></i>';
-                }
-                localStorage.setItem('theme', currentTheme);
-            }
             
             // Smooth scrolling for navigation links
             document.querySelectorAll('.nav-link').forEach(link => {
@@ -1511,8 +1261,10 @@ def index():
             // Listen for scroll events
             window.addEventListener('scroll', updateActiveNavLink);
             
-            // Initialize theme on page load
-            document.addEventListener('DOMContentLoaded', initTheme);
+            // Initialize on page load
+            document.addEventListener('DOMContentLoaded', () => {
+                // Page is ready
+            });
             
             // Navbar scroll effect
             let lastScrollTop = 0;
@@ -1585,12 +1337,6 @@ def blog():
                     Li(A("Contact", href="/#contact", cls="nav-link")),
                     cls="nav-menu"
                 ),
-                Button(
-                    I(cls="fas fa-moon"),
-                    cls="theme-toggle",
-                    id="theme-toggle",
-                    onclick="toggleTheme()"
-                ),
                 cls="nav-container"
             ),
             cls="navbar"
@@ -1638,36 +1384,8 @@ def blog():
             cls="footer"
         ),
         
-        # Same JavaScript as homepage
+        # JavaScript for blog page
         Script("""
-            let currentTheme = localStorage.getItem('theme') || 'light';
-            
-            function initTheme() {
-                if (currentTheme === 'dark') {
-                    document.body.setAttribute('data-theme', 'dark');
-                    document.getElementById('theme-toggle').innerHTML = '<i class="fas fa-sun"></i>';
-                } else {
-                    document.body.setAttribute('data-theme', 'light');
-                    document.getElementById('theme-toggle').innerHTML = '<i class="fas fa-moon"></i>';
-                }
-            }
-            
-            function toggleTheme() {
-                if (currentTheme === 'light') {
-                    currentTheme = 'dark';
-                    document.body.setAttribute('data-theme', 'dark');
-                    document.getElementById('theme-toggle').innerHTML = '<i class="fas fa-sun"></i>';
-                } else {
-                    currentTheme = 'light';
-                    document.body.setAttribute('data-theme', 'light');
-                    document.getElementById('theme-toggle').innerHTML = '<i class="fas fa-moon"></i>';
-                }
-                localStorage.setItem('theme', currentTheme);
-            }
-            
-            document.addEventListener('DOMContentLoaded', initTheme);
-            
-            // Set active nav link for blog page
             document.addEventListener('DOMContentLoaded', () => {
                 const blogLink = document.querySelector('.nav-link[href="/blog"]');
                 if (blogLink) {
@@ -1731,12 +1449,6 @@ def blog_post(slug: str):
                     Li(A("Contact", href="/#contact", cls="nav-link")),
                     cls="nav-menu"
                 ),
-                Button(
-                    I(cls="fas fa-moon"),
-                    cls="theme-toggle",
-                    id="theme-toggle",
-                    onclick="toggleTheme()"
-                ),
                 cls="nav-container"
             ),
             cls="navbar"
@@ -1779,34 +1491,6 @@ def blog_post(slug: str):
         
         # JavaScript
         Script("""
-            let currentTheme = localStorage.getItem('theme') || 'light';
-            
-            function initTheme() {
-                if (currentTheme === 'dark') {
-                    document.body.setAttribute('data-theme', 'dark');
-                    document.getElementById('theme-toggle').innerHTML = '<i class="fas fa-sun"></i>';
-                } else {
-                    document.body.setAttribute('data-theme', 'light');
-                    document.getElementById('theme-toggle').innerHTML = '<i class="fas fa-moon"></i>';
-                }
-            }
-            
-            function toggleTheme() {
-                if (currentTheme === 'light') {
-                    currentTheme = 'dark';
-                    document.body.setAttribute('data-theme', 'dark');
-                    document.getElementById('theme-toggle').innerHTML = '<i class="fas fa-sun"></i>';
-                } else {
-                    currentTheme = 'light';
-                    document.body.setAttribute('data-theme', 'light');
-                    document.getElementById('theme-toggle').innerHTML = '<i class="fas fa-moon"></i>';
-                }
-                localStorage.setItem('theme', currentTheme);
-            }
-            
-            document.addEventListener('DOMContentLoaded', initTheme);
-            
-            // Set active nav link for blog page
             document.addEventListener('DOMContentLoaded', () => {
                 const blogLink = document.querySelector('.nav-link[href="/blog"]');
                 if (blogLink) {
