@@ -1,4 +1,5 @@
 from fasthtml.common import *
+from fasthtml import Raw
 import json
 from pathlib import Path
 
@@ -213,9 +214,10 @@ body::before {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 2.5rem;
+    gap: 1.5rem;
     margin: 0;
     padding: 0;
+    align-items: center;
 }
 
 .nav-link {
@@ -224,8 +226,12 @@ body::before {
     font-weight: 600;
     transition: all 0.3s ease;
     padding: 0.8rem 1.5rem;
-    border-radius: 50px;
+    border-radius: 12px;
     position: relative;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     overflow: hidden;
 }
 
@@ -236,7 +242,7 @@ body::before {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    background: linear-gradient(90deg, transparent, rgba(0, 255, 136, 0.2), transparent);
     transition: left 0.5s;
 }
 
@@ -245,9 +251,18 @@ body::before {
 }
 
 .nav-link:hover {
+    background: rgba(0, 255, 136, 0.1);
+    border-color: var(--primary-color);
     color: var(--primary-color);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.3);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 35px rgba(0, 255, 136, 0.25);
+}
+
+.nav-link.active {
+    background: rgba(0, 255, 136, 0.15);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    box-shadow: 0 8px 25px rgba(0, 255, 136, 0.2);
 }
 
 .theme-toggle {
@@ -1396,6 +1411,12 @@ def index():
                     const href = link.getAttribute('href');
                     if (href.startsWith('#')) {
                         e.preventDefault();
+                        
+                        // Remove active class from all nav links
+                        document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+                        // Add active class to clicked link
+                        link.classList.add('active');
+                        
                         const targetSection = document.querySelector(href);
                         if (targetSection) {
                             const offsetTop = targetSection.offsetTop - 80;
@@ -1404,6 +1425,31 @@ def index():
                     }
                 });
             });
+            
+            // Update active nav link on scroll
+            function updateActiveNavLink() {
+                const sections = document.querySelectorAll('section[id]');
+                const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
+                
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop - 100;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= sectionTop && window.pageYOffset < sectionTop + sectionHeight) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            // Listen for scroll events
+            window.addEventListener('scroll', updateActiveNavLink);
             
             // Initialize theme on page load
             document.addEventListener('DOMContentLoaded', initTheme);
@@ -1542,6 +1588,14 @@ def blog():
             }
             
             document.addEventListener('DOMContentLoaded', initTheme);
+            
+            // Set active nav link for blog page
+            document.addEventListener('DOMContentLoaded', () => {
+                const blogLink = document.querySelector('.nav-link[href="/blog"]');
+                if (blogLink) {
+                    blogLink.classList.add('active');
+                }
+            });
         """)
     )
 
@@ -1673,6 +1727,14 @@ def blog_post(slug: str):
             }
             
             document.addEventListener('DOMContentLoaded', initTheme);
+            
+            // Set active nav link for blog page
+            document.addEventListener('DOMContentLoaded', () => {
+                const blogLink = document.querySelector('.nav-link[href="/blog"]');
+                if (blogLink) {
+                    blogLink.classList.add('active');
+                }
+            });
         """)
     )
 
