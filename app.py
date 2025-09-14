@@ -95,7 +95,7 @@ SKILLS = {
     'Programming Languages': ['Python', 'HTML5', 'CSS'],
     'Data Science & ML': ['NumPy', 'Pandas', 'Matplotlib', 'Plotly', 'scikit-learn', 'Seaborn'],
     'Databases': ['PostgreSQL', 'MySQL', 'MongoDB', 'SQLite'],
-    'Tools & Platforms': ['Git', 'GitHub', 'GitHub Actions', 'Streamlit', 'Flask', 'Django', 'Rest API']
+    'Tools & Platforms': ['Git', 'GitHub', 'GitHub Actions', 'Streamlit', 'Flask', 'Django', 'Rest API','MCP','Cursor']
 }
 
 # Custom CSS for modern 3D-inspired styling
