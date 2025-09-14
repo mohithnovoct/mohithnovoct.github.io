@@ -1,7 +1,24 @@
 from fasthtml.common import *
 from fasthtml import Raw
 import json
+import smtplib
+import os
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from pathlib import Path
+
+# Email configuration
+try:
+    from email_config_local import EMAIL_CONFIG
+except ImportError:
+    # Fallback configuration - you should create email_config_local.py
+    EMAIL_CONFIG = {
+        'smtp_server': 'smtp.gmail.com',
+        'smtp_port': 587,
+        'sender_email': os.getenv('SENDER_EMAIL', 'mohithbutta4002@gmail.com'),
+        'sender_password': os.getenv('SENDER_PASSWORD', ''),
+        'recipient_email': 'mohithbutta4002@gmail.com'
+    }
 
 # FastHTML app with modern styling
 app, rt = fast_app(
@@ -98,6 +115,49 @@ SKILLS = {
     'Databases': ['PostgreSQL', 'MySQL', 'MongoDB', 'SQLite'],
     'Tools & Platforms': ['Git', 'GitHub', 'GitHub Actions', 'Streamlit', 'Flask', 'Django', 'Rest API','MCP','Cursor']
 }
+
+# Email sending function
+def send_contact_email(name: str, email: str, subject: str, message: str) -> bool:
+    """
+    Send contact form email to the configured recipient.
+    Returns True if successful, False otherwise.
+    """
+    try:
+        # Create message
+        msg = MIMEMultipart()
+        msg['From'] = EMAIL_CONFIG['sender_email']
+        msg['To'] = EMAIL_CONFIG['recipient_email']
+        msg['Subject'] = f"Portfolio Contact Form: {subject}"
+        
+        # Create email body
+        body = f"""
+New message from your portfolio contact form:
+
+Name: {name}
+Email: {email}
+Subject: {subject}
+
+Message:
+{message}
+
+---
+This message was sent from your portfolio website.
+        """
+        
+        msg.attach(MIMEText(body, 'plain'))
+        
+        # Connect to server and send email
+        server = smtplib.SMTP(EMAIL_CONFIG['smtp_server'], EMAIL_CONFIG['smtp_port'])
+        server.starttls()  # Enable security
+        server.login(EMAIL_CONFIG['sender_email'], EMAIL_CONFIG['sender_password'])
+        text = msg.as_string()
+        server.sendmail(EMAIL_CONFIG['sender_email'], EMAIL_CONFIG['recipient_email'], text)
+        server.quit()
+        
+        return True
+    except Exception as e:
+        print(f"Error sending email: {e}")
+        return False
 
 # Custom CSS for modern 3D-inspired styling
 CUSTOM_CSS = """
@@ -1474,17 +1534,35 @@ def index():
 # Contact form handler
 @rt
 def contact(name: str, email: str, subject: str, message: str):
-    # Here you would typically send an email or save to database
-    # For now, we'll just return a success message
-    return Div(
-        Div(
-            P("Message sent successfully! I'll get back to you soon.", style="color: var(--success-color); font-weight: 600;"),
-            Button("Send Another Message", onclick="location.reload()", cls="btn btn-primary"),
-            style="text-align: center; padding: 2rem;"
-        ),
-        id="contact-form",
-        cls="contact-form"
-    )
+    # Send the email
+    email_sent = send_contact_email(name, email, subject, message)
+    
+    if email_sent:
+        # Success message
+        return Div(
+            Div(
+                I(cls="fas fa-check-circle", style="font-size: 3rem; color: var(--success-color); margin-bottom: 1rem;"),
+                H3("Message Sent Successfully!", style="color: var(--success-color); margin-bottom: 1rem;"),
+                P("Thank you for reaching out! I'll get back to you as soon as possible.", style="margin-bottom: 2rem;"),
+                Button("Send Another Message", onclick="location.reload()", cls="btn btn-primary"),
+                style="text-align: center; padding: 2rem;"
+            ),
+            id="contact-form",
+            cls="contact-form"
+        )
+    else:
+        # Error message
+        return Div(
+            Div(
+                I(cls="fas fa-exclamation-triangle", style="font-size: 3rem; color: var(--error-color); margin-bottom: 1rem;"),
+                H3("Oops! Something went wrong", style="color: var(--error-color); margin-bottom: 1rem;"),
+                P("There was an issue sending your message. Please try again or contact me directly at mohithbutta4002@gmail.com", style="margin-bottom: 2rem;"),
+                Button("Try Again", onclick="location.reload()", cls="btn btn-primary"),
+                style="text-align: center; padding: 2rem;"
+            ),
+            id="contact-form",
+            cls="contact-form"
+        )
 
 # Blog route
 @rt
