@@ -110,7 +110,7 @@ PROJECTS = [
 
 # Skills data
 SKILLS = {
-    'Programming Languages': ['Python', 'HTML5', 'CSS'],
+    'Programming Languages': ['Python', 'HTML5', 'CSS', 'JavaScript'],
     'Data Science & ML': ['NumPy', 'Pandas', 'Matplotlib', 'Plotly', 'scikit-learn', 'Seaborn'],
     'Databases': ['PostgreSQL', 'MySQL', 'MongoDB', 'SQLite'],
     'Tools & Platforms': ['Git', 'GitHub', 'GitHub Actions', 'Streamlit', 'Flask', 'Django', 'Rest API','MCP','Cursor']
