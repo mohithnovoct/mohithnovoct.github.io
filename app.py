@@ -993,7 +993,7 @@ def index():
                         A(
                             I(cls="fas fa-download"),
                             " Download Resume",
-                            href="Mohith_Butta-Resume.pdf",
+                            href="Mohith_Butta_Resume.pdf",
                             cls="btn btn-secondary",
                             download=True
                         ),
