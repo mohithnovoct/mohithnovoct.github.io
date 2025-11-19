@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://mohithnovoct.github.io/sitemap.xml
-
-

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohith Butta | Python Programmer & AI Enthusiast</title>
+    <meta name="description"
+        content="Portfolio of Mohith Butta, a Python Programmer & AI Enthusiast specializing in Machine Learning and Data Science.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">Mohith<span style="color: var(--accent-primary);">.</span></a>
+                <div class="nav-links">
+                    <a href="#home" class="active">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                    <a href="blog/index.html">Blog</a>
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1>Hello, I'm <br><span class="highlight">Mohith Butta</span></h1>
+                        <p>A passionate Python Programmer & AI Enthusiast building intelligent solutions and exploring
+                            the frontiers of Machine Learning.</p>
+                        <div class="cta-buttons">
+                            <a href="#projects" class="btn btn-primary">
+                                View Work <i class="fas fa-arrow-right"></i>
+                            </a>
+                            <a href="#contact" class="btn btn-secondary">
+                                Contact Me
+                            </a>
+                        </div>
+                    </div>
+                    <div class="hero-image">
+                        <img src="profile-image.jpg" alt="Mohith Butta">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <p class="section-subtitle">My journey in tech</p>
+
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>I am a dedicated developer with a strong focus on Python, Artificial Intelligence, and
+                            Machine Learning. I love solving complex problems and building applications that make a
+                            difference.</p>
+                        <p>With a background in computer science and a curiosity for new technologies, I am constantly
+                            learning and evolving my skills. Whether it's analyzing data, building predictive models, or
+                            creating web applications, I approach every project with enthusiasm and attention to detail.
+                        </p>
+
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <h3>4+</h3>
+                                <p>Major Projects</p>
+                            </div>
+                            <div class="stat-item">
+                                <h3>3+</h3>
+                                <p>Years Coding</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="about-skills" id="skills">
+                        <!-- Skills are integrated here for layout balance -->
+                        <div class="skills-grid">
+                            <div class="skill-card">
+                                <h3><i class="fab fa-python" style="color: #3776AB;"></i> Languages</h3>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Python</span>
+                                    <span class="skill-tag">HTML5</span>
+                                    <span class="skill-tag">CSS</span>
+                                    <span class="skill-tag">JavaScript</span>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <h3><i class="fas fa-brain" style="color: #FF6F00;"></i> AI & ML</h3>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">NumPy</span>
+                                    <span class="skill-tag">Pandas</span>
+                                    <span class="skill-tag">Scikit-Learn</span>
+                                    <span class="skill-tag">TensorFlow</span>
+                                    <span class="skill-tag">Matplotlib</span>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <h3><i class="fas fa-database" style="color: #00758F;"></i> Databases</h3>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">PostgreSQL</span>
+                                    <span class="skill-tag">MySQL</span>
+                                    <span class="skill-tag">MongoDB</span>
+                                    <span class="skill-tag">SQLite</span>
+                                </div>
+                            </div>
+                            <div class="skill-card">
+                                <h3><i class="fas fa-tools" style="color: #F05032;"></i> Tools</h3>
+                                <div class="skill-tags">
+                                    <span class="skill-tag">Git</span>
+                                    <span class="skill-tag">GitHub</span>
+                                    <span class="skill-tag">Flask</span>
+                                    <span class="skill-tag">Django</span>
+                                    <span class="skill-tag">Streamlit</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Some of my recent work</p>
+
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <article class="project-card">
+                        <div class="project-image">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3>Stock Market Prediction</h3>
+                            <p>Machine learning model for stock price prediction using historical data and technical
+                                indicators.</p>
+                            <div class="project-tech">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">TensorFlow</span>
+                                <span class="tech-badge">Scikit-Learn</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/mohithnovoct/Stock_Market_Prediction" target="_blank"
+                                    class="project-link">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Project 2 -->
+                    <article class="project-card">
+                        <div class="project-image">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3>Credit Card Fraud Detection</h3>
+                            <p>Machine learning system to detect fraudulent credit card transactions using various
+                                algorithms.</p>
+                            <div class="project-tech">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">Scikit-Learn</span>
+                                <span class="tech-badge">Pandas</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/mohithnovoct/CreditCardFraudDetection" target="_blank"
+                                    class="project-link">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+
+
+                    <!-- Project 4 -->
+                    <article class="project-card">
+                        <div class="project-image">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="project-content">
+                            <h3>LostNFound</h3>
+                            <p>A web application for lost and found items with search and matching capabilities.</p>
+                            <div class="project-tech">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">Flask</span>
+                                <span class="tech-badge">SQLite</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com/mohithnovoct/LostNFound" target="_blank"
+                                    class="project-link">
+                                    <i class="fab fa-github"></i> Code
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Let's work together</p>
+
+                <div class="contact-container">
+                    <div class="contact-card">
+                        <div class="social-links">
+                            <a href="https://github.com/mohithnovoct" target="_blank" class="social-link"
+                                title="GitHub">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="mailto:mohithbutta4002@gmail.com" class="social-link" title="Email">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <!-- Add LinkedIn if available -->
+                        </div>
+
+                        <form action="https://formspree.io/f/xrgngkpk" method="POST" class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" class="form-control" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;">
+                                Send Message <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mohith Butta. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

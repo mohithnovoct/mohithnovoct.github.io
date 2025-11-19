@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why Python Dominates Artificial Intelligence | Mohith Butta</title>
+    <meta name="description" content="A concise overview of how Python became the lingua franca of AI.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <style>
+        .blog-post {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .blog-post h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .blog-meta {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .blog-content {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .blog-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-content h2 {
+            color: var(--text-primary);
+            margin: 2rem 0 1rem;
+            font-size: 1.8rem;
+        }
+
+        .blog-content ul {
+            list-style: disc;
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-content code {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+            font-family: monospace;
+            color: var(--accent-primary);
+        }
+
+        .blog-content pre {
+            background: #1a1a1a;
+            padding: 1.5rem;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .blog-content pre code {
+            background: none;
+            padding: 0;
+            color: #e0e0e0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="../../index.html" class="logo">Mohith<span style="color: var(--accent-primary);">.</span></a>
+                <div class="nav-links">
+                    <a href="../../index.html">Home</a>
+                    <a href="../../index.html#about">About</a>
+                    <a href="../../index.html#projects">Projects</a>
+                    <a href="../index.html" class="active">Blog</a>
+                    <a href="../../index.html#contact">Contact</a>
+                </div>
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="section">
+            <div class="container">
+                <article class="blog-post">
+                    <h1>Why Python Dominates Artificial Intelligence</h1>
+                    <div class="blog-meta">
+                        <span><i class="far fa-calendar"></i> August 19, 2025</span>
+                        <span><i class="fas fa-tag"></i> Python, AI, ML</span>
+                    </div>
+
+                    <div class="blog-content">
+                        <p>Python isn’t just popular in AI—it is foundational. From research labs to startups and
+                            Fortune 500 systems, Python has become the common language that connects data work,
+                            modeling, deployment, and experimentation. Here’s how and why that happened, plus concrete
+                            use‑cases showing Python’s impact on AI’s rapid progress.</p>
+
+                        <h2>Why Python?</h2>
+                        <ul>
+                            <li><strong>Readability and speed of iteration:</strong> Expressive syntax makes prototyping
+                                ideas fast. Researchers can translate papers into code quickly.</li>
+                            <li><strong>Vast scientific stack:</strong> <code>NumPy</code>, <code>SciPy</code>,
+                                <code>Pandas</code>, <code>Matplotlib</code>, and <code>Jupyter</code> power
+                                exploration, reproducibility, and analysis.</li>
+                            <li><strong>First‑class ML frameworks:</strong> <code>PyTorch</code>,
+                                <code>TensorFlow</code>, <code>scikit‑learn</code>, <code>XGBoost</code>,
+                                <code>LightGBM</code> cover everything from classical ML to state‑of‑the‑art deep
+                                learning.</li>
+                            <li><strong>Glue language:</strong> Python integrates with C/C++ and CUDA for performance,
+                                and with data stores, message queues, and web stacks for production.</li>
+                        </ul>
+
+                        <h2>A Typical AI Workflow in Python</h2>
+                        <p>1) Data handling and feature building</p>
+                        <pre><code>import pandas as pd
+
+df = pd.read_csv('events.csv')
+df['hour'] = pd.to_datetime(df['timestamp']).dt.hour
+features = df[['hour', 'user_id', 'item_id']]</code></pre>
+
+                        <p>2) Classical ML baseline</p>
+                        <pre><code>from sklearn.model_selection import train_test_split
+from sklearn.metrics import roc_auc_score
+from xgboost import XGBClassifier
+
+X_train, X_valid, y_train, y_valid = train_test_split(
+    features.drop(columns=['user_id', 'item_id']),
+    df['label'], test_size=0.2, random_state=42
+)
+
+model = XGBClassifier(n_estimators=300, max_depth=6, learning_rate=0.05)
+model.fit(X_train, y_train)
+print('AUC:', roc_auc_score(y_valid, model.predict_proba(X_valid)[:, 1]))</code></pre>
+
+                        <p>3) Deep learning upgrade (vision, NLP, recsys)</p>
+                        <pre><code>import torch
+import torch.nn as nn
+
+class SimpleClassifier(nn.Module):
+    def __init__(self, input_dim):
+        super().__init__()
+        self.net = nn.Sequential(
+            nn.Linear(input_dim, 128), nn.ReLU(),
+            nn.Linear(128, 64), nn.ReLU(),
+            nn.Linear(64, 1)
+        )
+    def forward(self, x):
+        return self.net(x)
+
+model = SimpleClassifier(input_dim=X_train.shape[1])</code></pre>
+
+                        <h2>Use‑Cases that Benefited from Python</h2>
+                        <ul>
+                            <li><strong>Computer Vision:</strong> Medical imaging diagnostics, quality inspection in
+                                manufacturing, autonomous perception. Libraries like <code>torchvision</code>,
+                                <code>OpenCV</code> and <code>MONAI</code> made standardized pipelines accessible.</li>
+                            <li><strong>Natural Language Processing:</strong> Transformers via <code>transformers</code>
+                                (Hugging Face) democratized state‑of‑the‑art models for summarization, Q&A, and code
+                                generation with a few lines of Python.</li>
+                            <li><strong>Time‑Series & Forecasting:</strong> Retail demand, energy load, and anomaly
+                                detection with <code>statsmodels</code>, <code>Prophet</code>, and deep learning
+                                architectures in PyTorch.</li>
+                            <li><strong>Recommendation Systems:</strong> Feature stores (Feast), training loops
+                                (PyTorch/TF), and deployment with <code>FastAPI</code> or <code>BentoML</code> made
+                                full‑stack recsys reproducible.</li>
+                        </ul>
+
+                        <h2>Production and MLOps</h2>
+                        <ul>
+                            <li><strong>Serving:</strong> <code>FastAPI</code>/<code>Flask</code> for low‑latency
+                                inference; <code>TorchServe</code>, <code>TensorFlow Serving</code>,
+                                <code>BentoML</code> for model packaging at scale.</li>
+                            <li><strong>Pipelines:</strong> <code>Airflow</code>, <code>Prefect</code>,
+                                <code>Dagster</code> orchestrate data prep, training, evaluation, and deployment.</li>
+                            <li><strong>Experiment tracking:</strong> <code>MLflow</code>, <code>Weights & Biases</code>
+                                provide versioning of code, data, metrics, and artifacts.</li>
+                            <li><strong>Hardware acceleration:</strong> Python APIs wrap CUDA kernels; heavy lifting
+                                runs in optimized C++/cuDNN under the hood.</li>
+                        </ul>
+
+                        <h2>How Python Accelerated AI Advancements</h2>
+                        <ol>
+                            <li><strong>Rapid research‑to‑code loop:</strong> Paper implementations appear in Python
+                                within days, enabling fast replication and iteration.</li>
+                            <li><strong>Shared open‑source culture:</strong> Standardized tooling lowered barriers to
+                                entry; notebooks and model hubs scaled community learning.</li>
+                            <li><strong>Reproducibility:</strong> Conda/pip envs, notebooks, and dataset/versioning
+                                tools made experiments repeatable—critical for credible progress.</li>
+                            <li><strong>Interoperability:</strong> Python connects data engineering, model training,
+                                evaluation, and product layers, removing hand‑offs that slow teams.</li>
+                        </ol>
+
+                        <h2>Mini Case Studies</h2>
+                        <ul>
+                            <li><strong>Foundation models:</strong> The modern transformer ecosystem (pretraining,
+                                finetuning, inference optimizations) is largely Python-first, allowing rapid
+                                experimentation with architectures and scaling strategies.</li>
+                            <li><strong>Scientific discovery:</strong> Protein structure prediction and materials
+                                modeling pipelines combine Python data tooling with GPU‑accelerated deep learning,
+                                compressing multi‑year research cycles into months.</li>
+                        </ul>
+
+                        <h2>Takeaways for Practitioners</h2>
+                        <ul>
+                            <li>Start simple: build a strong classical ML baseline before deep models.</li>
+                            <li>Optimize the loop: automate data → train → evaluate → deploy.</li>
+                            <li>Track everything: metrics, configs, datasets, and artifacts.</li>
+                            <li>Lean on the ecosystem: don’t rebuild what libraries already provide.</li>
+                        </ul>
+
+                        <p>Python’s unique mix of ergonomics and ecosystem transformed AI from a niche craft into a
+                            global, fast‑moving engineering discipline. That compounding effect is why so many AI
+                            breakthroughs—and their real‑world applications—run on Python.</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Mohith Butta. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../../js/script.js"></script>
+</body>
+
+</html>

@@ -1,3 +1,0 @@
-python-fasthtml>=0.12.0
-uvicorn[standard]>=0.24.0
-# Email functionality is built into Python's standard library
